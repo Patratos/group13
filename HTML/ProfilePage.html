@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="../css/pageStyle.css">
+</head>
+<header>
+  <img id="logo" src="../img/KnitSkit.png" alt="KnitSkitLogo" width="150">
+    <nav id="welcome"> Welcome to KnitSkit! </nav>
+    <nav class="headerName"><a href="HomePage.html">Home</a></nav>
+    <nav class="headerName"><a href="LoginPage.html">Login</a></nav>
+    <nav class="headerName"><a href="CartPage.html">Cart</a></nav>
+    <nav class="headerName"><a href="ProfilePage.html">Profile</a></nav>
+    <nav class="headerName"><a href="ContactPage.html">Contact</a></nav>
+    <link rel="stylesheet" href="../css/header.css">
+</header>
+<body>
+  <main>
+        <div class="user-details">
+            <h2>User Profile</h2>
+            <hr>
+            <p id="nameHolder"><strong>Name: </strong></p>
+            <p id="emailHolder"><strong>Email: </strong></p>
+            <p id="addressHolder"><strong>Address: </strong></p>
+            <p id="phoneHolder"><strong>Phone: </strong> 050-1234567</p>
+            <button id="logoutBtn">Logout</button>
+        </div>
+        <br>
+        <div class="update-profile">
+            <h2>Update Profile</h2>
+            <form>
+                <label for="newName">Name:</label>
+                <input type="text" id="newName" name="name">
+
+                <label for="newEmail">Email:</label>
+                <input type="email" id="newEmail" name="email">
+
+                <label for="newAddress">Address:</label>
+                <input type="text" id="newAddress" name="address">
+
+                <label for="newPhone">Phone:</label>
+                <input type="tel" id="newPhone" name="phone">
+
+                <button id="updateProfileBTN">Update Profile</button>
+            </form>
+        </div>
+        <br>
+      </main>
+  <link rel="stylesheet" href="../css/body.css">
+<footer>
+  <nav id="aboutUsTitle"> About Us</nav>
+  <nav id="aboutUs"> KnitSkit is a homemade business created by crochet enthusiasts that aspire to create cute items that will bring a smile for everyone - adults and children alike!</nav>
+  <link rel="stylesheet" href="../css/footer.css">
+</footer>
+  <script src="/js/updateProfile.js"></script>
+</body>
+</html>

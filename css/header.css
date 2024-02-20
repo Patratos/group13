@@ -1,0 +1,40 @@
+header {
+  display: grid;
+  grid-template-areas:
+  "logo welcome home login profile cart contact";
+  grid-template-columns: 1fr 6fr 1fr 1fr 1fr 1fr 1fr;
+  font-weight: bold;
+  font-size: 36px;
+  background: #DC143C;
+}
+
+#logo{
+  display: grid;
+  grid-area: logo;
+  align-self: center;
+  justify-content: start;
+}
+
+#welcome {
+  display: grid;
+  grid-area: welcome;
+  align-self: center;
+  justify-content: center;
+  /*opacity: 0;*/
+  animation: fadeIn 1s ease-in;
+}
+  @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.headerName{
+  display: grid;
+  grid-area: auto;
+  align-self: center;
+  justify-content: center;
+}

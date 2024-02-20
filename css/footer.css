@@ -1,0 +1,24 @@
+footer{
+  height: 75px;
+  display: grid;
+  grid-template-areas:
+  "aboutTitle aboutUs";
+  grid-template-columns: 20% 80%;
+  font-weight: bold;
+  font-size: 24px;
+  background: #4169E1;
+}
+
+#aboutUsTitle{
+  display: grid;
+  grid-area: aboutTitle;
+  align-self: center;
+  justify-content: start;
+}
+
+#aboutUs{
+  display: grid;
+  grid-area: aboutUs;
+  align-self: center;
+  justify-content: start;
+}

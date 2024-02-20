@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KnitSkit Cart</title>
+    <link rel="stylesheet" href="../css/pageStyle.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="/css/body.css">
+    <link rel="stylesheet" href="/css/cart.css"> <!-- Make sure to create this CSS file -->
+</head>
+<body>
+
+<header>
+  <img id="logo" src="../img/KnitSkit.png" alt="KnitSkitLogo" width="150">
+    <nav id="welcome"> Welcome to KnitSkit! </nav>
+    <nav class="headerName"><a href="HomePage.html">Home</a></nav>
+    <nav class="headerName"><a href="LoginPage.html">Login</a></nav>
+    <nav class="headerName"><a href="CartPage.html">Cart</a></nav>
+    <nav class="headerName"><a href="ProfilePage.html">Profile</a></nav>
+    <nav class="headerName"><a href="ContactPage.html">Contact</a></nav>
+
+</header>
+
+<main>
+    <h1>Shopping Cart</h1>
+    <div class="cart-container">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+<!--                    <th>Total</th>-->
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!--       cart items will be inserted here     -->
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+
+            <p class="total">Total: <span class="total-value"></span></p>
+            <button id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+  <nav id="aboutUsTitle"> About Us</nav>
+  <nav id="aboutUs"> KnitSkit is a homemade business created by crochet enthusiasts that aspire to create cute items that will bring a smile for everyone - adults and children alike!</nav>
+
+</footer>
+<script src="/js/checkout.js"></script>
+<script src="/js/cart.js"></script>
+</body>
+</html>

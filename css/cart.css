@@ -1,0 +1,37 @@
+/* cartPage.css */
+.cart-container {
+    /* Styles for the cart container */
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* More styles for your cart table */
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.item-quantity {
+    /* Style for quantity input */
+}
+
+.remove-item {
+    /* Style for remove item button */
+}
+
+.cart-summary {
+    margin-top: 20px;
+    /* Styles for the cart summary section */
+}
+
+.subtotal, .total {
+    /* Styles for subtotal and total lines */
+}
+
+.update-cart, .checkout {
+    /* Styles for update and checkout buttons */
+}

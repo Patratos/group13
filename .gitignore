@@ -1,0 +1,22 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+# Useful .gitignore templates: https://github.com/github/gitignore
+node_modules
+dist
+.cache
+.idea
+.venv
+.editorconfig
+icon.svg
+favicon.ico
+icon.png
+robots.txt
+site.webmanifest
+webpack.common.js
+webpack.config.dev.js
+webpack.config.prod.js
+package.json
+license.txt
+index.html
+404.html
+.editorconfig
