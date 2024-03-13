@@ -27,6 +27,7 @@ window.addEventListener('load', (e) => {
         const removeButton = removeBTNtd.querySelector('button');
         removeButton.addEventListener('click', () => {
             newRow.remove();
+            localStorage.removeItem();
             calcTotal();
         })
         calcTotal();
