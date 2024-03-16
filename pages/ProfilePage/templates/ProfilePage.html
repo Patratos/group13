@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="../../../static/css/PageStyle.css">
+</head>
+<header>
+  <img id="logo" src="../../../static/media/img/KnitSkit.png" alt="KnitSkitLogo" width="150">
+    <nav id="welcome"> Welcome to KnitSkit! </nav>
+    <nav class="headerName"><a href="../../HomePage/templates/HomePage.html">Home</a></nav>
+    <nav class="headerName"><a href="../../LoginPage/templates/LoginPage.html">Login</a></nav>
+    <nav class="headerName"><a href="../../CartPage/templates/CartPage.html">Cart</a></nav>
+    <nav class="headerName"><a href="ProfilePage.html">Profile</a></nav>
+    <nav class="headerName"><a href="../../ContactPage/templates/ContactPage.html">Contact</a></nav>
+    <link rel="stylesheet" href="../../../static/css/header.css">
+</header>
+<body>
+  <main>
+        <div class="user-details">
+            <h2>User Profile</h2>
+            <hr>
+            <p id="nameHolder"><strong>Name: </strong></p>
+            <p id="emailHolder"><strong>Email: </strong></p>
+            <p id="addressHolder"><strong>Address: </strong></p>
+            <p id="phoneHolder"><strong>Phone: </strong> 050-1234567</p>
+            <button id="logoutBtn">Logout</button>
+        </div>
+        <br>
+        <div class="update-profile">
+            <h2>Update Profile</h2>
+            <form>
+                <label for="newName">Name:</label>
+                <br>
+                <input type="text" id="newName" name="name">
+                <br>
+                <label for="newEmail">Email:</label>
+                <br>
+                <input type="email" id="newEmail" name="email">
+                <br>
+                <label for="newAddress">Address:</label>
+                <br>
+                <input type="text" id="newAddress" name="address">
+                <br>
+                <label for="newPhone">Phone:</label>
+                <br>
+                <input type="tel" id="newPhone" name="phone">
+                <br>
+                <button id="updateProfileBTN">Update Profile</button>
+            </form>
+        </div>
+        <br>
+      </main>
+  <link rel="stylesheet" href="../../../static/css/body.css">
+<footer>
+  <nav id="aboutUsTitle"> About Us</nav>
+  <nav id="aboutUs"> KnitSkit is a homemade business created by crochet enthusiasts that aspire to create cute items that will bring a smile for everyone - adults and children alike!</nav>
+  <link rel="stylesheet" href="../../../static/css/footer.css">
+</footer>
+  <script src="/js/updateProfile.js"></script>
+</body>
+</html>

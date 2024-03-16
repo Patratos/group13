@@ -8,7 +8,7 @@ DB_URI = os.environ.get('DB_URI')
 
 # DB base configuration from .env for modularity and security reasons
 DB = {
-    'host' : os.environ.get('DB_HOST'),
+    'host': os.environ.get('DB_HOST'),
     'user': os.environ.get('DB_USER'),
     'password': os.environ.get('DB_PASSWORD'),
     'database': os.environ.get('DB_NAME')

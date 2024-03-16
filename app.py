@@ -1,42 +1,51 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, render_template
 
-###### App setup
+# App setup
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
 
-###### Pages
-## Homepage
-from pages.homepage.homepage import homepage
+# Pages
+# Home page
+from pages.HomePage.HomePage import HomePage
 
-app.register_blueprint(homepage)
+app.register_blueprint(HomePage)
 
-## About
-from pages.about.about import about
+# Cart page
+from pages.CartPage.CartPage import CartPage
 
-app.register_blueprint(about)
+app.register_blueprint(CartPage)
 
-## Profile
-from pages.profile.profile import profile
+# Checkout Page
+from pages.CheckoutPage.CheckoutPage import CheckoutPage
 
-app.register_blueprint(profile)
+app.register_blueprint(CheckoutPage)
 
-## Profile
-from pages.menu.menu import menu
+# Contact Page
+from pages.ContactPage.ContactPage import ContactPage
 
-app.register_blueprint(menu)
+app.register_blueprint(ContactPage)
 
-## Catalog
-from pages.catalog.catalog import catalog
+# Login Page
+from pages.LoginPage.LoginPage import LoginPage
 
-app.register_blueprint(catalog)
+app.register_blueprint(LoginPage)
 
-## Page error handlers
-from pages.page_error_handlers.page_error_handlers import page_error_handlers
+# Profile Page
+from pages.ProfilePage.ProfilePage import ProfilePage
 
-app.register_blueprint(page_error_handlers)
+app.register_blueprint(ProfilePage)
 
-###### Components
-## Main menu
-from components.main_menu.main_menu import main_menu
+# Register Page
+from pages.RegisterPage.RegisterPage import RegisterPage
 
-app.register_blueprint(main_menu)
+app.register_blueprint(RegisterPage)
+
+# Header Component
+from components.Header.Header import Header
+
+app.register_blueprint(Header)
+
+# Footer Component
+from components.Footer.Footer import Footer
+
+app.register_blueprint(Footer)

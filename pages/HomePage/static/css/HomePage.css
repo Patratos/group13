@@ -1,0 +1,73 @@
+main {
+  margin-right: 10%; /* Adjust margin-left to match the width of the sidebar */
+  margin-left: 10%;
+  padding: 20px;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.storeArea{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+.content {
+  margin-left: 10%; /* Adjust margin-left to leave space for the sidebar */
+  margin-right: 10%;
+  margin-top: 5px; /* Add margin-top to create space between the sidebar and the main content */
+  padding: 5px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px; /* Adjust margin between products */
+  margin-bottom: 20px;
+  /*border: 1px solid #ddd;*/
+  padding: 10px;
+  width: 200px; /* Adjust product width */
+}
+
+.product img {
+  width: auto;
+  height: 150px; /* Set a fixed height for the images */
+  object-fit: cover; /* Ensure images cover the entire area while maintaining aspect ratio */
+}
+
+.product-info {
+  flex-grow: 1;
+  text-align: center; /* Center text */
+}
+
+.product-info h3 {
+  margin: 0;
+}
+
+.product-info p {
+  margin: 0;
+  color: #666;
+}
+body{
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: #87CEFA
+}
+/*.footer{*/
+/*  bottom: 0;*/
+/*  left:0;*/
+/*}*/
+.add-to-cart {
+  background-color: #888888;
+  /*border: none;*/
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.add-to-cart:hover {
+  background-color: lightyellow;
+}

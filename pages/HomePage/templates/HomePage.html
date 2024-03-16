@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+<title>{% block title %}Home{% endblock %}</title>
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('HomePage.static', filename='css/HomePage.css') }}">
+{% endblock %}
+{% block page_body_content %}
+    {% block page_main %}
+        <div class="storeArea">
+            <div class="product">
+                <img src="{{ url_for('HomePage.static', filename='media/Car.jpg') }}" alt="Car">
+                <div class="product-info">
+                    <h3 class="item-name">Car</h3>
+                    <p class="item-price">19.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img class="thumbnailOrder" src="{{ url_for('HomePage.static', filename='media/Cake With Candle.jpg') }}" alt="Cake With Candle">
+                <div class="product-info">
+                    <h3>Cake With Candle</h3>
+                    <p>24.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img class="thumbnailOrder" src="{{ url_for('HomePage.static', filename='media/Baby Girl Shirt.jpg') }}" alt="Baby Girl Shirt">
+                <div class="product-info">
+                    <h3>Shirt</h3>
+                    <p>39.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img class="thumbnailOrder" src="{{ url_for('HomePage.static', filename='media/Coin Bank.jpg') }}" alt="Coin Bank">
+                <div class="product-info">
+                    <h3>Coin Bank</h3>
+                    <p>9.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+            </div>
+            <div class="product">
+                <img class="thumbnailOrder" src="{{ url_for('HomePage.static', filename='media/Doll.png') }}" alt="Doll">
+                <div class="product-info">
+                    <h3>Doll</h3>
+                    <p>14.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+
+            </div>
+            <div class="product">
+                <img class="thumbnailOrder" src="{{ url_for('HomePage.static', filename='media/Happy Star.jpg') }}" alt="Happy Star">
+                <div class="product-info">
+                    <h3>Happy Star</h3>
+                    <p>12.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img class="thumbnailOrder" src="{{ url_for('HomePage.static', filename='media/White Cake.jpg') }}" alt="White Cake">
+                <div class="product-info">
+                    <h3>White Cupcake</h3>
+                    <p>21.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <script src="/js/home.js"></script>
+{% endblock %}

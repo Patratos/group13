@@ -1,20 +1,26 @@
-@import "variables.css";
-
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    font-family: var(--xsite-font-family);
+body{
+  text-align: center;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: #87CEFA;
 }
 
-a[href] {
-    color: var(--link-color);
+main {
+  grid-template-rows: auto 1fr auto;
+  font-size: 24px;
+  margin-right: 20%;
+  margin-left: 20%;
 }
 
-a[href]:visited {
-    color: var(--visited-link-color);
+table{
+  border: 1px solid #ddd;
 }
 
-a[href]:active {
-    color: var(--active-link-color);
+td{
+  padding: 0 15px;
+}
+
+button{
+  background-color: lightyellow;
 }

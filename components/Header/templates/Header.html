@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="{{ url_for('Header.static', filename='css/Header.css') }}">
+<header>
+    <img id="logo" src="../../../static/media/img/KnitSkit.png" alt="KnitSkitLogo" width="150">
+    <nav id="welcome"> Welcome to KnitSkit!</nav>
+    <nav class="headerName"><a href="{{ url_for('HomePage.home_page') }}">Home</a></nav>
+    <nav class="headerName"><a href="{{ url_for('LoginPage.login_page') }}">Login</a></nav>
+    <nav class="headerName"><a href="{{ url_for('CartPage.cart_page') }}">Cart</a></nav>
+    <nav class="headerName"><a href="{{ url_for('ProfilePage.profile_page') }}">Profile</a></nav>
+    <nav class="headerName"><a href="{{ url_for('ContactPage.contact_page') }}">Contact</a></nav>
+</header>
