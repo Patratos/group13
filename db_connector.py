@@ -20,19 +20,14 @@ except Exception as e:
 
 # get all dbs and collections that needed
 mydatabase = cluster['KnitSkit']
-accounts_col = mydatabase['accounts']
+users_col = mydatabase['users']
 
-new_account = {
-    'name': 'admin',
-    'password': '<PASSWORD>',
-    'email': 'admin@admin.com',
-    'phone': '0365937628'
-}
-accounts_col.insert_one(new_account)
 
-# # create all necessary functions
-# def get_list_of_customers():
-#     return list(customers_col.find())
-# def insert_customer(customer_dict):
-#     customers_col.insert_one(customer_dict)
-# ...
+# Create all necessary functions
+def user_exists(email):
+    return users_col.find_one({'Email': email})
+
+
+def add_user(user):
+    users_col.insert_one(user)
+

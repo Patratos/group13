@@ -5,6 +5,7 @@ app = Flask(__name__)
 app.config.from_pyfile('settings.py')
 
 # Pages
+
 # Home page
 from pages.HomePage.HomePage import HomePage
 
@@ -39,6 +40,8 @@ app.register_blueprint(ProfilePage)
 from pages.RegisterPage.RegisterPage import RegisterPage
 
 app.register_blueprint(RegisterPage)
+
+# Components
 
 # Header Component
 from components.Header.Header import Header
