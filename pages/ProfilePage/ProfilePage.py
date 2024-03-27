@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template, session
+from db_connector import *
 
 ProfilePage = Blueprint(
     'ProfilePage',

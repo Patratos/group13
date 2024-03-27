@@ -10,5 +10,6 @@ HomePage = Blueprint(
 
 
 @HomePage.route('/')
+@HomePage.route('/HomePage')
 def home_page():
     return render_template('HomePage.html')

@@ -5,9 +5,9 @@
         <form action="/Login">
             <h1>Please Log in</h1>
             <div>
-                <label for="username"> Username</label>
+                <label for="email">Email</label>
                 <br>
-                <input type="text" name="username" id="username" required>
+                <input type="text" name="email" id="email" required>
             </div>
             <div>
                 <label for="password">Password</label>
@@ -22,5 +22,7 @@
             <p>New here? <a href="{{ url_for('RegisterPage.register_page') }}">Register</a></p>
         </form>
     {% endblock %}
-    <script src="/js/login.js"></script>
+    {% block page_body_js %}
+        <script src="{{ url_for('LoginPage.static', filename='js/login.js') }}"></script>
+    {% endblock %}
 {% endblock %}

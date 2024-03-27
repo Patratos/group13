@@ -31,3 +31,6 @@ def user_exists(email):
 def add_user(user):
     users_col.insert_one(user)
 
+
+def find_user(email, password):
+    return users_col.find_one({'Email': email, 'Password': password})

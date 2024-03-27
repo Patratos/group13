@@ -35,19 +35,19 @@ registerButton.addEventListener('click', (e) => {
 
         fetch('/RegisterPage', {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(registerData)
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success){
+                if (data.success) {
                     alert("Registered Successfully")
                     window.location.href = "/LoginPage"
                 } else {
                     alert("Registration failed")
                 }
-            });
+            })
     }
 })

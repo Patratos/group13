@@ -38,5 +38,7 @@
             </form>
         </div>
     {% endblock %}
-    <script src="/js/updateProfile.js"></script>
+    {% block page_body_js %}
+        <script src="{{ url_for('ProfilePage.static', filename='js/updateProfile.js') }}"></script>
+    {% endblock %}
 {% endblock %}
