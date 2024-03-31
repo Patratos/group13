@@ -24,6 +24,10 @@ users_col = mydatabase['users']
 
 
 # Create all necessary functions
+def get_id(email):
+    return users_col.find_one({'Email': email})["_id"]
+
+
 def user_exists(email):
     return users_col.find_one({'Email': email})
 
@@ -34,3 +38,7 @@ def add_user(user):
 
 def find_user(email, password):
     return users_col.find_one({'Email': email, 'Password': password})
+
+
+def update_user(user_id, username, email, address, phone):
+    return users_col.update_one({"_id": user_id}, {'$set': {'Username': username, 'Email': email, 'Address': address, 'Phone': phone}})

@@ -22,7 +22,11 @@ def login_page():
         if user:
             session['Email'] = email
             session['Password'] = password
-
+            session['Username'] = user.get('Username')
+            session['Phone'] = user.get('Phone')
+            session['Address'] = user.get('Address')
+            session['LoggedIn'] = True
+            print(session)
             return jsonify(success=True)
 
         else:

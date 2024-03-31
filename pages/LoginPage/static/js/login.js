@@ -22,7 +22,6 @@ loginButton.addEventListener('click', (e) => {
         .then(data => {
             if (data.success) {
                 alert("Logged in Successfully")
-                localStorage.setItem("login", "true")
                 window.location.href = "/HomePage"
             } else {
                 alert(data.error)
