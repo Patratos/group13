@@ -21,6 +21,20 @@ except Exception as e:
 # get all dbs and collections that needed
 mydatabase = cluster['KnitSkit']
 users_col = mydatabase['users']
+products_col = mydatabase['products']
+
+
+def fetch_all_products():
+    try:
+        products = products_col.find()
+        for product in products:
+            print(product)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+# Call the function to fetch and print all products
+fetch_all_products()
 
 
 # Create all necessary functions
@@ -41,4 +55,5 @@ def find_user(email, password):
 
 
 def update_user(user_id, username, email, address, phone):
-    return users_col.update_one({"_id": user_id}, {'$set': {'Username': username, 'Email': email, 'Address': address, 'Phone': phone}})
+    return users_col.update_one({"_id": user_id},
+                                {'$set': {'Username': username, 'Email': email, 'Address': address, 'Phone': phone}})
