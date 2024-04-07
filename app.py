@@ -1,4 +1,6 @@
 from flask import Flask, redirect, url_for, render_template
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 # App setup
 app = Flask(__name__)
