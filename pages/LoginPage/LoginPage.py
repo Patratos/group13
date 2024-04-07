@@ -26,7 +26,6 @@ def login_page():
             session['Phone'] = user.get('Phone')
             session['Address'] = user.get('Address')
             session['LoggedIn'] = True
-            print(session)
             return jsonify(success=True)
 
         else:

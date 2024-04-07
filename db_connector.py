@@ -21,6 +21,8 @@ except Exception as e:
 # get all dbs and collections that needed
 mydatabase = cluster['KnitSkit']
 users_col = mydatabase['users']
+products_col = mydatabase['products']
+carts_col = mydatabase['carts']
 
 
 # Create all necessary functions
@@ -41,4 +43,34 @@ def find_user(email, password):
 
 
 def update_user(user_id, username, email, address, phone):
-    return users_col.update_one({"_id": user_id}, {'$set': {'Username': username, 'Email': email, 'Address': address, 'Phone': phone}})
+    return users_col.update_one({"_id": user_id},
+                                {'$set': {'Username': username, 'Email': email, 'Address': address, 'Phone': phone}})
+
+
+def get_cart(email):
+    cart = carts_col.find_one({"User": email})
+    print(f"Queried cart for {email}: {cart}")
+    return cart
+
+
+def add_product_to_cart(email, product_name, quantity):
+    # checking if the user already has a cart
+    cart = get_cart(email)
+
+    if cart:
+        # Find the cart document for the user and add a new product to the 'products' array
+        carts_col.update_one(
+            {"User": email},
+            {"$push": {"Products": {"Product-name": product_name, "Quantity": quantity}}}
+        )
+    else:
+        new_cart = {
+            "User": email,
+            "Products": [
+                {
+                    "Product-name": product_name,
+                    "Quantity": quantity
+                }
+            ]
+        }
+        carts_col.insert_one(new_cart)
