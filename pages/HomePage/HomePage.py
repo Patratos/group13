@@ -26,7 +26,7 @@ def home_page():
         product_name = data.get('product_name')  # Corrected key name
         quantity = int(data.get('quantity', 1))
         print(f" Converted this item: {product_id}, {product_name}, {quantity}")  # Debug print
-        add_product_to_cart(email, product_id, quantity)
+        add_product_to_cart(email, product_name, quantity)
 
         return jsonify(success=True)
     else:

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect
+from flask import Blueprint, render_template, session, redirect, flash
 
 CheckoutPage = Blueprint(
     'CheckoutPage',
@@ -14,7 +14,7 @@ def checkout_page():
     phone = session['Phone']
     address = session['Address']
     if address == '' or phone == '':
+        flash('Missing address and phone number', 'error')
         return redirect('/ProfilePage')
     else:
         return render_template('CheckoutPage.html')
-        # return redirect('/CheckoutPage')
