@@ -2,22 +2,24 @@
 <title>{% block title %}Checkout Page{% endblock %}</title>
 {% block page_body_content %}
     {% block page_main %}
-    <form id="checkoutForm">
-        <h1>Please Enter Payment Method Below</h1>
-        <label for="creditCard">Credit Card Number:</label>
-        <br>
-        <input type="text" id="creditCard" name="creditCard" required>
-        <br>
-        <label for="expiryDate">Expiry Date:</label>
-        <br>
-        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
-        <br>
-        <label for="cvv">CVV:</label>
-        <br>
-        <input type="text" id="cvv" name="cvv" required>
-        <br>
-        <button id="payBtn">Confirm Payment</button>
-    </form>
-   {% endblock %}
-<script src="/js/pay.js"></script>
+        <form id="checkoutForm">
+            <h1>Please Enter Payment Method Below</h1>
+            <label for="creditCard">Credit Card Number:</label>
+            <br>
+            <input type="text" id="creditCard" name="creditCard" required>
+            <br>
+            <label for="expiryDate">Expiry Date:</label>
+            <br>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            <br>
+            <label for="cvv">CVV:</label>
+            <br>
+            <input type="text" id="cvv" name="cvv" required>
+            <br>
+            <button id="payBtn">Confirm Payment</button>
+        </form>
+    {% endblock %}
+    {% block page_body_js %}
+        <script src="{{ url_for('CheckoutPage.static', filename='js/pay.js') }}"></script>
+    {% endblock %}
 {% endblock %}

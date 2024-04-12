@@ -26,6 +26,8 @@
             </div>
         </div>
     {% endblock %}
-    <script src="/js/checkout.js"></script>
-    <script src="/js/cart.js"></script>
+    {% block page_body_js %}
+        <script src="{{ url_for('CartPage.static', filename='js/checkout.js') }}"></script>
+        <script src="{{ url_for('CartPage.static', filename='js/cart.js') }}"></script>
+    {% endblock %}
 {% endblock %}

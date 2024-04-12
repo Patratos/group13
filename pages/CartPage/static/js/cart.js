@@ -1,8 +1,3 @@
-// deny access to cart if not logged in.
-if (localStorage.getItem("login") === "false" || localStorage.getItem("login") === ""){
-  window.location = "LoginPage.html"
-}
-
 const cartTable = document.querySelector('.cart-table')
 window.addEventListener('load', (e) => {
     let items = JSON.parse(localStorage.getItem("items"));

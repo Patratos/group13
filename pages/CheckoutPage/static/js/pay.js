@@ -43,6 +43,6 @@ payment.addEventListener('click', (e)=>{
   } else {
     alert("Thank you!")
     localStorage.removeItem("items")
-    window.location = "CartPage.html"
+    window.location.href = "/HomePage"
   }
 })

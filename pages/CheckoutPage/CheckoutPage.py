@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template, session, redirect
 
 CheckoutPage = Blueprint(
     'CheckoutPage',
@@ -11,4 +11,10 @@ CheckoutPage = Blueprint(
 
 @CheckoutPage.route('/CheckoutPage')
 def checkout_page():
-    return render_template('CheckoutPage.html')
+    phone = session['Phone']
+    address = session['Address']
+    if address == '' or phone == '':
+        return redirect('/ProfilePage')
+    else:
+        return render_template('CheckoutPage.html')
+        # return redirect('/CheckoutPage')

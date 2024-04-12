@@ -26,7 +26,7 @@ updateProfileButton.addEventListener('click', (e) => {
     }
 
     if (newEmail === "") {
-    } else if (!newEmail.includes("@") || (!newEmail.includes(".com") && !newEmail.includes(".net") && !email.includes(".org"))) {   // if input doesnt include "@" alert.
+    } else if (!newEmail.includes("@") || (!newEmail.includes(".com") && !newEmail.includes(".net") && !email.includes(".org"))) {   // if input doesnt include "@" or .com/.net/.org alert.
         return alert("Must be an email")
     }
 
@@ -36,7 +36,7 @@ updateProfileButton.addEventListener('click', (e) => {
     }
 
     if (document.getElementById("newPhone").value === "") {
-    } else {
+    } else if (newPhone.length !== 10) {
         return alert("Must be a phone number")
     }
 

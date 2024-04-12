@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, session, redirect, render_template
 
 CartPage = Blueprint(
     'CartPage',
@@ -11,4 +11,13 @@ CartPage = Blueprint(
 
 @CartPage.route('/CartPage')
 def cart_page():
-    return render_template('CartPage.html')
+    if not session.get('LoggedIn') is None:  # if a session exists.
+        if session != {}:  # if a session isn't empty
+            if session['LoggedIn']:  # if in an existing session, the user logged in
+                return render_template('CartPage.html')
+            else:
+                return redirect('/LoginPage')
+        else:
+            return redirect('/LoginPage')
+    else:
+        return redirect('/LoginPage')
