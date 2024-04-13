@@ -94,45 +94,96 @@ def add_product_to_cart(email, product_name, quantity):
 
 
 def get_cart_with_details(email):
-    # Fetch the user's cart
     cart = carts_col.find_one({"User": email})
     if cart:
         product_details = []
-        # Iterate over each product entry in the cart
         for cart_item in cart["Products"]:
             product_name = cart_item["Product-name"]
-            # Fetch the product details from the products collection using the product name
             product = products_col.find_one({"name": product_name})
             if product:
-                # Ensure the quantity is extracted correctly from the cart_item
-                quantity = cart_item["Quantity"]  # This assumes the quantity is stored as previously described
-                # Append product details including the correct quantity from the cart
                 product_details.append({
                     "name": product_name,
-                    "quantity": quantity,
-                    "price": product.get("price", {}),  # Default to 0 if price or format is missing
-                    "image_path": product.get("image_path", "default.jpg")  # Provide a default image path if missing
+                    "quantity": cart_item["Quantity"],
+                    "price": product.get("price", 0),  # Default to 0 if price is missing
+                    "image_path": product.get("image_path", "default.jpg"),  # Default image if missing
+                    "_id": str(product.get("_id"))  # Convert ObjectId to string
                 })
-                print(product.get("image_path", "default.jpg"))
         cart["Products"] = product_details
     return cart
 
-def update_product_quantity_in_cart(email, product_name, new_quantity):
-    """
-    Update the quantity of a specific product in the user's cart.
 
-    :param email: The email address of the user (used to identify the correct cart).
-    :param product_name: The name of the product to update.
-    :param new_quantity: The new quantity for the product.
+def update_cart_items(email, updated_items):
     """
-    # Update the product quantity in the user's cart
+    Updates the quantities of multiple items in the user's cart.
+
+    :param email: Email of the user whose cart is to be updated.
+    :param updated_items: List of dictionaries, each containing 'Product-name' and 'Quantity'.
+    :return: List of messages indicating the success or failure of each update.
+    """
+    messages = []
+    for item in updated_items:
+        product_name = item['Product-name']
+        new_quantity = item['Quantity']
+
+        # Perform the update
+        if new_quantity > 0:
+            result = carts_col.update_one(
+                {"User": email, "Products.Product-name": product_name},
+                {"$set": {"Products.$.Quantity": new_quantity}}
+            )
+            # Check the result and create a message accordingly
+            if result.modified_count == 1:
+                messages.append(f"Quantity for {product_name} updated successfully.")
+            else:
+                messages.append(
+                    f"No changes made to the quantity of {product_name}. Check if the product name exists in the cart.")
+        else:
+            # If the quantity is zero or less, assume item needs to be removed
+            result = carts_col.update_one(
+                {"User": email},
+                {"$pull": {"Products": {"Product-name": product_name}}}
+            )
+            if result.modified_count == 1:
+                messages.append(f"Removed {product_name} from cart successfully.")
+            else:
+                messages.append(f"Failed to remove {product_name} from cart. It may not exist.")
+
+    return messages
+
+
+def remove_item_from_cart(email, product_name):
+    """
+    Removes an item from the cart based on the user's email and product name.
+
+    :param email: The email address of the user whose cart needs modification.
+    :param product_name: The name of the product to remove from the cart.
+    :return: A message indicating whether the removal was successful.
+    """
+    # Attempt to update the cart document by pulling the product from the Products array
     result = carts_col.update_one(
-        {"User": email, "Products.Product-name": product_name},
-        {"$set": {"Products.$.Quantity": new_quantity}}
+        {"User": email},
+        {"$pull": {"Products": {"Product-name": product_name}}}
     )
 
-    # Check if the update was successful
     if result.modified_count == 1:
-        return "Product quantity updated successfully."
+        return f"Removed {product_name} from cart successfully."
     else:
-        return "No changes made to the product quantity, check if the product name exists."
+        return f"Failed to remove {product_name} from cart. It may not exist."
+
+
+# Assuming that you already have the necessary imports and MongoDB connection setup
+
+def delete_user_cart(email):
+    """
+    Deletes the user's cart from the database.
+
+    :param email: Email of the user whose cart is to be deleted.
+    :return: A message indicating the result of the operation.
+    """
+    result = carts_col.delete_one({'User': email})
+    if result.deleted_count == 1:
+        print(f"Cart for {email} was successfully deleted.")
+        return "Cart successfully deleted."
+    else:
+        print(f"No cart found for {email} to delete.")
+        return "No cart found to delete."

@@ -46,3 +46,43 @@ payment.addEventListener('click', (e)=>{
     window.location.href = "/HomePage"
   }
 })
+
+document.getElementById('payBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    let creditCard = document.getElementById("creditCard").value;
+    let expiryDate = document.getElementById("expiryDate").value;
+    let cvv = document.getElementById("cvv").value;
+
+    if (creditCard.length !== 16) {
+        return alert("Credit Card Number Not Valid");
+    } else if (!expiryDate.includes("/")) {
+        return alert("Expiry Date Not Valid");
+    } else if (cvv.length !== 3) {
+        return alert("CVV Not Valid");
+    } else {
+        // Send payment information to the server
+        fetch('/CheckoutPage/confirmPayment', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                creditCard: creditCard,
+                expiryDate: expiryDate,
+                cvv: cvv
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Thank you! Payment successful.");
+                window.location.href = "/HomePage"; // Redirect to home page after successful payment
+            } else {
+                alert("Payment failed: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Payment error:', error);
+            alert('Payment error: ' + error.message);
+        });
+    }
+});
