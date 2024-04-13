@@ -1,37 +1,76 @@
-/* cartPage.css */
+/* Cart Container and General Layout */
 .cart-container {
-    /* Styles for the cart container */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* Cart Table - Full Width, Centered, and Styled */
 .cart-table {
     width: 100%;
+
     border-collapse: collapse;
-    /* More styles for your cart table */
+    margin: 0 auto; /* Ensure the table is centered */
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .cart-table th, .cart-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 1px solid #ccc;
+    padding: 12px 15px;
     text-align: left;
 }
 
+.cart-table th {
+    background-color: #e2e2e2;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Images in Cart Table */
+.cart-table td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensure this is set to cover to maintain aspect ratio */
+    display: block;
+    margin: auto; /* Centers the image */
+    border-radius: 5px;
+}
+
+/* Quantity Input */
 .item-quantity {
-    /* Style for quantity input */
+    width: 50px;
+    text-align: center;
 }
 
-.remove-item {
-    /* Style for remove item button */
+/* Buttons in Cart Table */
+.remove-item, .update-cart, .checkout {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
+.remove-item:hover, .update-cart:hover, .checkout:hover {
+    opacity: 0.85;
+}
+
+/* Cart Summary Alignment */
 .cart-summary {
+    text-align: center; /* Center-align the summary content */
     margin-top: 20px;
-    /* Styles for the cart summary section */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.subtotal, .total {
-    /* Styles for subtotal and total lines */
-}
-
+/* Button Styling */
 .update-cart, .checkout {
-    /* Styles for update and checkout buttons */
+    background-color: #4CAF50;
+    margin-right: 10px; /* Right margin for spacing between buttons */
+}
+
+.checkout {
+    background-color: #008cba;
 }

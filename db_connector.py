@@ -74,3 +74,27 @@ def add_product_to_cart(email, product_name, quantity):
             ]
         }
         carts_col.insert_one(new_cart)
+
+def get_cart_with_details(email):
+    # Fetch the user's cart
+    cart = carts_col.find_one({"User": email})
+    if cart:
+        product_details = []
+        # Iterate over each product entry in the cart
+        for cart_item in cart["Products"]:
+            product_name = cart_item["Product-name"]
+            # Fetch the product details from the products collection using the product name
+            product = products_col.find_one({"name": product_name})
+            if product:
+                # Ensure the quantity is extracted correctly from the cart_item
+                quantity = cart_item["Quantity"]  # This assumes the quantity is stored as previously described
+                # Append product details including the correct quantity from the cart
+                product_details.append({
+                    "name": product_name,
+                    "quantity": quantity,
+                    "price": product.get("price", {}),  # Default to 0 if price or format is missing
+                    "image_path": product.get("image_path", "default.jpg")  # Provide a default image path if missing
+                })
+                print(product.get("image_path", "default.jpg"))
+        cart["Products"] = product_details
+    return cart

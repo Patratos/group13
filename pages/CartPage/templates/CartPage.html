@@ -4,28 +4,45 @@
     <link rel="stylesheet" href="{{ url_for('CartPage.static', filename='css/Cart.css') }}">
 {% endblock %}
 {% block page_body_content %}
-    <div class="cartArea">
-        {% if items|length > 0 %}
-            {% for item in items %}
-                <div class="cart-item">
-                    <img src="{{ url_for('CartPage.static', filename=item.image_path) }}" alt="{{ item.name }}">
-                    <div class="item-details">
-                        <h3 class="item-name">{{ item.name }}</h3>
-                        <p class="item-price">{{ item.price }}</p>
-                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
-                        <button class="remove-item" data-id="{{ item._id }}">Remove</button>
-                    </div>
-                </div>
-            {% endfor %}
-            <div class="checkout">
-                <button type="button" onclick="location.href='{{ url_for('CheckoutPage.checkout_page') }}'">Proceed to
-                    Checkout
-                </button>
-            </div>
-        {% else %}
-            <p>Your cart is empty.</p>
-        {% endif %}
-    </div>
+<div class="cartArea">
+    {% if items|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Image</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td><img src="{{ url_for('static', filename='media/products_img/' + item.image_path) }}" alt="{{ item.name }}" style="width:100px; height:auto;"></td>
+                        <td>{{ item.name }}</td>
+                        <td>${{ '%.2f' | format(item.price) }}</td>
+                        <td>
+                            <input type="number" name="quantity" value="{{ item.quantity }}" min="1" style="width: 50px;">
+                        </td>
+                        <td>${{ '%.2f' | format(item.price * item.quantity) }}</td>
+                        <td>
+                            <button class="remove-item" data-id="{{ item._id }}">Remove</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+<div class="cart-summary">
+    <button class="update-cart" onclick="updateCart()">Update Cart</button>
+    <button class="checkout" onclick="location.href='{{ url_for('CheckoutPage.checkout_page') }}'">Proceed to Checkout</button>
+</div>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
 {% endblock %}
 {% block page_body_js %}
     <script src="{{ url_for('CartPage.static', filename='js/cart.js') }}"></script>
