@@ -57,6 +57,7 @@ function calcTotal() {
 }
 
 // Function to update the cart on the server
+// Function to update the cart on the server
 function updateCart() {
     let items = [];
     document.querySelectorAll('.cart-item').forEach(row => {
@@ -72,8 +73,10 @@ function updateCart() {
     })
     .then(response => response.json())
     .then(data => {
-        if(data.success) {
+        if (data.success) {
             alert(data.message);
+            // Update local storage and/or reload parts of the page to reflect new data
+            localStorage.setItem("items", JSON.stringify(items)); // Update local storage
             location.reload(); // Optionally reload to fetch and display updated data
         } else {
             alert('Failed to update cart');

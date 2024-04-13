@@ -54,26 +54,44 @@ def get_cart(email):
 
 
 def add_product_to_cart(email, product_name, quantity):
-    # checking if the user already has a cart
+    # Retrieve the user's cart
     cart = get_cart(email)
 
     if cart:
-        # Find the cart document for the user and add a new product to the 'products' array
-        carts_col.update_one(
-            {"User": email},
-            {"$push": {"Products": {"Product-name": product_name, "Quantity": quantity}}}
-        )
+        # Check if the product is already in the cart
+        product_exists = False
+        for product in cart['Products']:
+            if product['Product-name'] == product_name:
+                product_exists = True
+                # Update the quantity of the existing product
+                new_quantity = product['Quantity'] + quantity
+                carts_col.update_one(
+                    {"User": email, "Products.Product-name": product_name},
+                    {"$set": {"Products.$.Quantity": new_quantity}}
+                )
+                message = "Updated quantity for existing product."
+                break
+
+        if not product_exists:
+            # Product not found, add new product to the cart
+            carts_col.update_one(
+                {"User": email},
+                {"$push": {"Products": {"Product-name": product_name, "Quantity": quantity}}}
+            )
+            message = "Added new product to cart."
+
     else:
+        # No cart exists, create a new cart with the product
         new_cart = {
             "User": email,
             "Products": [
-                {
-                    "Product-name": product_name,
-                    "Quantity": quantity
-                }
+                {"Product-name": product_name, "Quantity": quantity}
             ]
         }
         carts_col.insert_one(new_cart)
+        message = "Created new cart and added product."
+        return message
+
 
 def get_cart_with_details(email):
     # Fetch the user's cart
@@ -98,3 +116,23 @@ def get_cart_with_details(email):
                 print(product.get("image_path", "default.jpg"))
         cart["Products"] = product_details
     return cart
+
+def update_product_quantity_in_cart(email, product_name, new_quantity):
+    """
+    Update the quantity of a specific product in the user's cart.
+
+    :param email: The email address of the user (used to identify the correct cart).
+    :param product_name: The name of the product to update.
+    :param new_quantity: The new quantity for the product.
+    """
+    # Update the product quantity in the user's cart
+    result = carts_col.update_one(
+        {"User": email, "Products.Product-name": product_name},
+        {"$set": {"Products.$.Quantity": new_quantity}}
+    )
+
+    # Check if the update was successful
+    if result.modified_count == 1:
+        return "Product quantity updated successfully."
+    else:
+        return "No changes made to the product quantity, check if the product name exists."

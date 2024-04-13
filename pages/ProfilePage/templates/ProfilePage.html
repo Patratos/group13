@@ -6,6 +6,13 @@
 {% block page_body_content %}
     {% block page_main %}
         <div class="user-details">
+            <div class="container">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}"><h2>{{ message }}</h2></div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
             <h2>User Profile</h2>
             <hr>
             <p id="nameHolder"><strong>Name: </strong>{{ username }}</p>

@@ -17,12 +17,13 @@ def cart_page():
 
     email = session.get('Email')
     if request.method == 'POST':
-        # Handling the POST request from the cart update
-        updated_items = request.json['items']  # Assuming the data is sent as JSON
-        cart = update_cart_items(email, updated_items)
-        return jsonify({'success': True, 'message': 'Cart updated successfully'})
+        updated_items = request.json['items']
+        messages = []
+        for item in updated_items:
+            result_message = update_product_quantity_in_cart(email, item['Product-name'], item['Quantity'])
+            messages.append(result_message)
+        return jsonify({'success': True, 'messages': messages})
 
-    # For GET request, display the cart page
     cart = get_cart_with_details(email)
     items = cart['Products'] if cart else []
     return render_template('CartPage.html', items=items)

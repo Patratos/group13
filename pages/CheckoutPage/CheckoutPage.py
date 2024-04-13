@@ -14,7 +14,7 @@ def checkout_page():
     phone = session['Phone']
     address = session['Address']
     if address == '' or phone == '':
-        flash('Missing address and phone number', 'error')
+        flash('Missing address and phone number', 'attention')
         return redirect('/ProfilePage')
     else:
         return render_template('CheckoutPage.html')
