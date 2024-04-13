@@ -63,15 +63,15 @@ function updateCart() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Cart updated successfully.');
+            // alert('Cart updated successfully.');
             location.reload();  // Reload to reflect the updated data
         } else {
-            alert('Failed to update cart: ' + data.messages.join('\n'));
+            // alert('Failed to update cart: ' + data.messages.join('\n'));
         }
     })
     .catch(error => {
         console.error('Error updating cart:', error);
-        alert('Error updating cart: ' + error.message);
+        // alert('Error updating cart: ' + error.message);
     });
 }
 
@@ -103,16 +103,16 @@ document.querySelectorAll('.remove-item').forEach(button => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Item removed successfully.');
+                // alert('Item removed successfully.');
                 row.remove();  // Remove the row from the table
                 calcTotal();  // Recalculate the total if needed
             } else {
-                alert('Failed to remove item: ' + data.message);
+                // alert('Failed to remove item: ' + data.message);
             }
         })
         .catch(error => {
             console.error('Error removing item:', error);
-            alert('Error removing item: ' + error.message);
+            // alert('Error removing item: ' + error.message);
         });
     });
 });
@@ -139,16 +139,16 @@ document.querySelectorAll('.remove-item').forEach(button => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Item removed successfully.');
+                // alert('Item removed successfully.');
                 row.remove();  // Remove the row from the DOM
                 calcTotal();  // Recalculate total if necessary
             } else {
-                alert('Failed to remove item: ' + data.message);
+                // alert('Failed to remove item: ' + data.message);
             }
         })
         .catch(error => {
             console.error('Error removing item:', error);
-            alert('Error removing item: ' + error.message);
+            // alert('Error removing item: ' + error.message);
         });
     });
 });

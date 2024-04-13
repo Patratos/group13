@@ -29,7 +29,7 @@ document.querySelectorAll(".add-to-cart").forEach(btn => {
         // })
         .then(data => {
             if(data.success){
-                alert("Java script Item added to cart successfully");
+                alert("Item added to cart");
                 // Optionally refresh or redirect the user
             }
         })

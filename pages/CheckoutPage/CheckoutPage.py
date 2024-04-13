@@ -14,24 +14,25 @@ def checkout_page():
     phone = session['Phone']
     address = session['Address']
     if address == '' or phone == '':
-        flash('Missing address and phone number', 'attention')
+        flash('Missing address and/or phone number', 'attention')
         return redirect('/ProfilePage')
     else:
         return render_template('CheckoutPage.html')
 
-@CheckoutPage.route('/CheckoutPage/confirmPayment', methods=['POST'])
+
+# @CheckoutPage.route('/CheckoutPage/confirmPayment', methods=['POST'])
 @CheckoutPage.route('/CheckoutPage/confirmPayment', methods=['POST'])
 def confirm_payment():
     if not session.get('LoggedIn'):
         return jsonify({'success': False, 'message': 'User must be logged in to complete payment.'}), 401
 
     data = request.get_json()
-    creditCard = data.get('creditCard')
-    expiryDate = data.get('expiryDate')
+    credit_card = data.get('creditCard')
+    expiry_date = data.get('expiryDate')
     cvv = data.get('cvv')
 
     # Assume basic validation is already done, here just for demonstration
-    if len(creditCard) == 16 and "/" in expiryDate and len(cvv) == 3:
+    if len(credit_card) == 16 and "/" in expiry_date and len(cvv) == 3:
         email = session.get('Email')
         message = delete_user_cart(email)  # Delete the user's cart after confirming payment
         return jsonify({'success': True, 'message': message})
