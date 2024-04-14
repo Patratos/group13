@@ -34,5 +34,7 @@
             <p>Want to Register? <a href="{{ url_for('RegisterPage.register_page') }}">Register</a></p>
         </form>
     {% endblock %}
-    <script src="/js/contact.js"></script>
+    {% block page_body_js %}
+        <script src="{{ url_for('ContactPage.static', filename='js/contact.js') }}"></script>
+    {% endblock %}
 {% endblock %}

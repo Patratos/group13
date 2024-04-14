@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, flash, jsonify, request
 from db_connector import *
+
 CheckoutPage = Blueprint(
     'CheckoutPage',
     __name__,
@@ -20,7 +21,6 @@ def checkout_page():
         return render_template('CheckoutPage.html')
 
 
-# @CheckoutPage.route('/CheckoutPage/confirmPayment', methods=['POST'])
 @CheckoutPage.route('/CheckoutPage/confirmPayment', methods=['POST'])
 def confirm_payment():
     if not session.get('LoggedIn'):

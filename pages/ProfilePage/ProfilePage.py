@@ -39,7 +39,7 @@ def logout():
 def update_profile():
     if request.method == 'POST':
         data = request.json
-        # if the new data is empty, that field.
+        # if the new data is empty, don't update.
         if data.get('username') != "":
             session['Username'] = data.get('username')
         if data.get('email') != "":

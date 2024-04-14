@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
 
         const cellRemove = newRow.insertCell(5);
         cellRemove.innerHTML = `<button class="remove-item">Remove</button>`;
-        cellRemove.querySelector('.remove-item').addEventListener('click', function() {
+        cellRemove.querySelector('.remove-item').addEventListener('click', function () {
             newRow.remove();
             updateLocalStorageOnRemove(item.id);
             calcTotal();
@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
     calcTotal(); // Initial total calculation
 
     // Listen for clicks on the Update Cart button
-    document.querySelector('.update-cart').addEventListener('click', function() {
+    document.querySelector('.update-cart').addEventListener('click', function () {
         updateCart();
     });
 });
@@ -60,19 +60,19 @@ function updateCart() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({items: items})
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // alert('Cart updated successfully.');
-            location.reload();  // Reload to reflect the updated data
-        } else {
-            // alert('Failed to update cart: ' + data.messages.join('\n'));
-        }
-    })
-    .catch(error => {
-        console.error('Error updating cart:', error);
-        // alert('Error updating cart: ' + error.message);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // alert('Cart updated successfully.');
+                location.reload();  // Reload to reflect the updated data
+            } else {
+                // alert('Failed to update cart: ' + data.messages.join('\n'));
+            }
+        })
+        .catch(error => {
+            console.error('Error updating cart:', error);
+            // alert('Error updating cart: ' + error.message);
+        });
 }
 
 document.querySelector('.update-cart').addEventListener('click', updateCart);  // Attach the updateCart function to the update button
@@ -92,7 +92,7 @@ function calcTotal() {
 
 
 document.querySelectorAll('.remove-item').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         const row = button.closest('.cart-item');
         const productName = row.querySelector('.item-name').textContent.trim();
         fetch('/CartPage/remove', {
@@ -100,20 +100,20 @@ document.querySelectorAll('.remove-item').forEach(button => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({"Product-name": productName})
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // alert('Item removed successfully.');
-                row.remove();  // Remove the row from the table
-                calcTotal();  // Recalculate the total if needed
-            } else {
-                // alert('Failed to remove item: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error removing item:', error);
-            // alert('Error removing item: ' + error.message);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // alert('Item removed successfully.');
+                    row.remove();  // Remove the row from the table
+                    calcTotal();  // Recalculate the total if needed
+                } else {
+                    // alert('Failed to remove item: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error removing item:', error);
+                // alert('Error removing item: ' + error.message);
+            });
     });
 });
 
@@ -127,7 +127,7 @@ function updateLocalStorageOnRemove(itemId) {
 
 // Attach event listeners to each "Remove" button
 document.querySelectorAll('.remove-item').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         const row = this.closest('tr');
         const productName = row.querySelector('td:nth-child(2)').textContent.trim();  // Assuming the product name is in the second cell
 
@@ -136,19 +136,19 @@ document.querySelectorAll('.remove-item').forEach(button => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({"Product-name": productName})
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // alert('Item removed successfully.');
-                row.remove();  // Remove the row from the DOM
-                calcTotal();  // Recalculate total if necessary
-            } else {
-                // alert('Failed to remove item: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error removing item:', error);
-            // alert('Error removing item: ' + error.message);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // alert('Item removed successfully.');
+                    row.remove();  // Remove the row from the DOM
+                    calcTotal();  // Recalculate total if necessary
+                } else {
+                    // alert('Failed to remove item: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error removing item:', error);
+                // alert('Error removing item: ' + error.message);
+            });
     });
 });

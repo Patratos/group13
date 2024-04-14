@@ -54,11 +54,10 @@ updateProfileButton.addEventListener('click', (e) => {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success){
+            if (data.success) {
                 alert("Profile update successful")
                 window.location.href = "/ProfilePage"
-            }
-            else{
+            } else {
                 alert(data.error)
             }
         })

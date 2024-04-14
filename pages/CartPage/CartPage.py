@@ -13,7 +13,6 @@ CartPage = Blueprint(
 @CartPage.route('/CartPage', methods=['GET', 'POST'])
 def cart_page():
     if not session.get('LoggedIn'):
-        flash('You need to login to view your cart', 'error')
         return redirect(url_for('LoginPage.login_page'))
 
     email = session.get('Email')

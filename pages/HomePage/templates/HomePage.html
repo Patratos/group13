@@ -5,25 +5,27 @@
 {% endblock %}
 {% block page_body_content %}
     {% block page_main %}
-       <div class="storeArea">
+        <div class="storeArea">
             {% for product in products %}
                 <form>
                     <input type="hidden" name="product_id" value="{{ product._id }}">
                     <input type="hidden" name="product_name" value="{{ product.name }}">  <!-- Add this line -->
                     <div class="product">
-                         <img src="{{ url_for('static', filename='media/products_img/' + product.image_path) }}" alt="{{ product.name }}">
-                    <div class="product-info">
-                        <h3 class="item-name">{{ product.name }}</h3>
-                        <p class="item-price">{{ product.price }}</p>
-                        <input type="number" name="quantity" value="1" min="1" style="display:none;">  <!-- Add quantity input, hidden by default -->
-                        <button type="submit" class="add-to-cart">Add to Cart</button>
-                    </div>
+                        <img src="{{ url_for('static', filename='media/products_img/' + product.image_path) }}"
+                             alt="{{ product.name }}">
+                        <div class="product-info">
+                            <h3 class="item-name">{{ product.name }}</h3>
+                            <p class="item-price">{{ product.price }}</p>
+                            <input type="number" name="quantity" value="1" min="1" style="display:none;">
+                            <!-- Add quantity input, hidden by default -->
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
                     </div>
                 </form>
             {% endfor %}
         </div>
     {% endblock %}
-    {% block page_body_js%}
+    {% block page_body_js %}
         <script src="{{ url_for('HomePage.static', filename='js/home.js') }}"></script>
     {% endblock %}
 {% endblock %}
