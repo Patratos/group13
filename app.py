@@ -1,11 +1,10 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask
 
 # App setup
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
 
 # Pages
-
 # Home page
 from pages.HomePage.HomePage import HomePage
 
