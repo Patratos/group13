@@ -86,6 +86,7 @@ function calcTotal() {
         const total = price * quantity;
         row.cells[4].textContent = `$${total.toFixed(2)}`;  // Update the Total cell
         totalPrice += total;
+        updateGrandTotal();
     });
     document.querySelector('.total-value').textContent = `$${totalPrice.toFixed(2)}`;  // Update the total display
 }
@@ -152,3 +153,11 @@ document.querySelectorAll('.remove-item').forEach(button => {
             });
     });
 });
+function updateGrandTotal() {
+    let grandTotal = 0;
+    document.querySelectorAll('.cartArea table tbody tr').forEach(row => {
+        const total = parseFloat(row.cells[4].textContent.replace('$', '').trim());
+        grandTotal += total;
+    });
+    document.querySelector('#grandTotal').textContent = `$${grandTotal.toFixed(2)}`;
+}
